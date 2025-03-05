@@ -4,8 +4,10 @@
 import express from "express";
 import cors from "cors";
 import routes from "./routes/index";
+import { setupSwagger } from "./utils/swagger";
 
 const app = express();
+setupSwagger(app);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

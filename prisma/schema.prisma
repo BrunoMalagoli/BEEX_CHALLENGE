@@ -14,9 +14,15 @@ datasource db {
 }
 
 model Usuario {
-  id        Int      @id @default(autoincrement())
-  nombre    String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
+  id               Int       @id @default(autoincrement())
+  nombre           String
+  email            String    @unique
+  fechaNacimiento  DateTime?
+  createdAt        DateTime  @default(now())
+  telefono         String?
+  latitud          Float?
+  longitud         Float?
+  partidasJugadas  Int       @default(0)
+  partidasGanadas  Int       @default(0)
+  partidasPerdidas Int       @default(0)
 }
