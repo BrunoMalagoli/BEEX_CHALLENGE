@@ -15,4 +15,5 @@ userRoutes.get(
 userRoutes.patch("/finishedMatch", UserController.recordMatchResult);
 userRoutes.get("/matches/:id", UserController.getUserPlayedMatches); //Numero de partidas jugadas
 userRoutes.get("/matches/winrate/:id", UserController.getUserWinRate); //Devuelve el valor del porcentaje de WinRate
+
 export default userRoutes;

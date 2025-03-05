@@ -20,9 +20,10 @@ model Usuario {
   fechaNacimiento  DateTime?
   createdAt        DateTime  @default(now())
   telefono         String?
-  latitud          Float?
-  longitud         Float?
+  latitud          Decimal
+  longitud         Decimal
   partidasJugadas  Int       @default(0)
   partidasGanadas  Int       @default(0)
   partidasPerdidas Int       @default(0)
+  ranking          String    @default("Bronce")
 }

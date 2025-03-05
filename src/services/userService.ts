@@ -20,8 +20,8 @@ export class UserService {
     email: string;
     fechaNacimiento: Date | null;
     telefono: string | null;
-    longitud: null;
-    latitud: null;
+    longitud: number;
+    latitud: number;
   }): Promise<Usuario> {
     try {
       await prisma.$connect();
