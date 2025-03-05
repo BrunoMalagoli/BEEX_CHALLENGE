@@ -193,6 +193,9 @@ export class UserService {
       if (!usuario) {
         throw new Error("Usuario no encontrado");
       }
+      if (usuario.partidasJugadas === 0) {
+        return 0;
+      }
       return (usuario.partidasGanadas / usuario.partidasJugadas) * 100;
     } catch (error) {
       throw new Error("Error del servidor");

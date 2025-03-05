@@ -27,7 +27,7 @@ export const UserController = {
       const users = await userService.getAllUsers();
       res.status(200).json(users);
     } catch (error) {
-      res.status(500).json({ message: error });
+      res.status(500).json({ message: (error as Error).message });
     }
   },
   getOneUser: async (req: Request, res: Response) => {
@@ -36,7 +36,7 @@ export const UserController = {
       const user = await userService.getOneUser(Number(id));
       res.status(200).json(user);
     } catch (error) {
-      res.status(500).json({ message: error });
+      res.status(500).json({ message: (error as Error).message });
     }
   },
   getOneUserByEmail: async (req: Request, res: Response) => {
@@ -45,7 +45,7 @@ export const UserController = {
       const user = await userService.getOneUserByEmail(email);
       res.status(200).json(user);
     } catch (error) {
-      res.status(500).json({ message: error });
+      res.status(500).json({ message: (error as Error).message });
     }
   },
   getUserProfileCompletion: async (req: Request, res: Response) => {
@@ -54,7 +54,7 @@ export const UserController = {
       const percentage = await userService.getUserProfileCompletion(Number(id));
       res.status(200).json(percentage);
     } catch (error) {
-      res.status(500).json({ message: error });
+      res.status(500).json({ message: (error as Error).message });
     }
   },
 
@@ -90,7 +90,7 @@ export const UserController = {
       const matches = await userService.getUserTotalMatches(Number(id));
       res.status(200).json(matches);
     } catch (error) {
-      res.status(500).json({ message: error });
+      res.status(500).json({ message: (error as Error).message });
     }
   },
   getUserWinRate: async (req: Request, res: Response) => {
@@ -99,7 +99,7 @@ export const UserController = {
       const winrate = await userService.getUserWinRate(Number(id));
       res.status(200).json(winrate);
     } catch (error) {
-      res.status(500).json({ message: error });
+      res.status(500).json({ message: (error as Error).message });
     }
   },
 };

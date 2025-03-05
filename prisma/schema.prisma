@@ -25,5 +25,5 @@ model Usuario {
   partidasJugadas  Int       @default(0)
   partidasGanadas  Int       @default(0)
   partidasPerdidas Int       @default(0)
-  ranking          String    @default("Bronce")
+  ranking          String    @default("bronce")
 }
