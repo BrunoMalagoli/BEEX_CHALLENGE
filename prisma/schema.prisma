@@ -26,4 +26,22 @@ model Usuario {
   partidasGanadas  Int       @default(0)
   partidasPerdidas Int       @default(0)
   ranking          String    @default("bronce")
+  matchesAsPlayer1 Match[]   @relation("Player1Matches")
+  matchesAsPlayer2 Match[]   @relation("Player2Matches")
+  matchesAsPlayer3 Match[]   @relation("Player3Matches")
+  matchesAsPlayer4 Match[]   @relation("Player4Matches")
+}
+
+model Match {
+  id        String   @id @default(uuid())
+  player1Id Int
+  player2Id Int?
+  player3Id Int?
+  player4Id Int?
+  status    String   @default("en espera")
+  createdAt DateTime @default(now())
+  player1   Usuario  @relation("Player1Matches", fields: [player1Id], references: [id])
+  player2   Usuario? @relation("Player2Matches", fields: [player2Id], references: [id])
+  player3   Usuario? @relation("Player3Matches", fields: [player3Id], references: [id])
+  player4   Usuario? @relation("Player4Matches", fields: [player4Id], references: [id])
 }
