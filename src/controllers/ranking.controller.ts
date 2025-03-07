@@ -6,7 +6,14 @@ export const RankingController = {
     try {
       const rank = req.params.rank;
       const rankedUsers = await rankingService.getUsersByRanking(rank);
-      res.status(200).json(rankedUsers);
+      rankedUsers
+        ? res.status(200).json(rankedUsers)
+        : res
+            .status(404)
+            .json({
+              message:
+                "No se encontraron jugadores del rango indicado, por favor prueba bronce | plata | oro",
+            });
     } catch (error) {
       res.status(500).json({ message: (error as Error).message });
     }

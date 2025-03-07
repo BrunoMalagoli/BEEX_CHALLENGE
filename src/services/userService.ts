@@ -50,7 +50,7 @@ export class UserService {
         throw new Error("Usuario no encontrado");
       }
     } catch (error) {
-      throw new Error("Error del servidor");
+      throw error;
     } finally {
       await prisma.$disconnect();
     }
@@ -69,7 +69,7 @@ export class UserService {
         throw new Error("Usuario no encontrado");
       }
     } catch (error) {
-      throw new Error("Error del servidor");
+      throw error;
     } finally {
       await prisma.$disconnect();
     }

@@ -139,8 +139,6 @@ export class MatchmakingService {
           // Agrega al jugador actual a la partida en espera
           if (isCompatible) {
             let updateData: any = {};
-            console.log({ match });
-            console.log({ playersInMatch });
             try {
               if (!match.player2Id) {
                 updateData.player2Id = userId;
@@ -187,8 +185,28 @@ export class MatchmakingService {
         });
         return match;
       }
+
+      throw new Error("No se encontró una partida compatible");
     } catch (error) {
       throw error;
+    } finally {
+      await prisma.$disconnect();
+    }
+  }
+  async getActiveMatches() {
+    try {
+      await prisma.$connect();
+      const matches = await prisma.match.findMany({
+        where: {
+          status: "activa",
+        },
+      });
+      if (matches.length === 0) {
+        throw new Error("No hay partidas activas");
+      }
+      return matches;
+    } catch (error) {
+      throw new Error("Error del servidor al buscar partidas activas");
     } finally {
       await prisma.$disconnect();
     }

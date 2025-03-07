@@ -25,7 +25,9 @@ export const UserController = {
   getAllUsers: async (req: Request, res: Response) => {
     try {
       const users = await userService.getAllUsers();
-      res.status(200).json(users);
+      users
+        ? res.status(200).json(users)
+        : res.status(404).json({ message: "No se encontraron usuarios" });
     } catch (error) {
       res.status(500).json({ message: (error as Error).message });
     }
@@ -36,7 +38,7 @@ export const UserController = {
       const user = await userService.getOneUser(Number(id));
       res.status(200).json(user);
     } catch (error) {
-      res.status(500).json({ message: (error as Error).message });
+      res.status(404).json({ message: (error as Error).message });
     }
   },
   getOneUserByEmail: async (req: Request, res: Response) => {
@@ -45,7 +47,7 @@ export const UserController = {
       const user = await userService.getOneUserByEmail(email);
       res.status(200).json(user);
     } catch (error) {
-      res.status(500).json({ message: (error as Error).message });
+      res.status(404).json({ message: (error as Error).message });
     }
   },
   getUserProfileCompletion: async (req: Request, res: Response) => {
@@ -88,7 +90,11 @@ export const UserController = {
     try {
       const { id } = req.params;
       const matches = await userService.getUserTotalMatches(Number(id));
-      res.status(200).json(matches);
+      matches
+        ? res.status(200).json(matches)
+        : res
+            .status(404)
+            .json({ message: "No se encontraron partidos del jugador " + id });
     } catch (error) {
       res.status(500).json({ message: (error as Error).message });
     }
@@ -97,7 +103,13 @@ export const UserController = {
     try {
       const { id } = req.params;
       const winrate = await userService.getUserWinRate(Number(id));
-      res.status(200).json(winrate);
+      winrate
+        ? res.status(200).json(winrate)
+        : res
+            .status(404)
+            .json({
+              message: "No se ha podido calcular el winrate del jugador",
+            });
     } catch (error) {
       res.status(500).json({ message: (error as Error).message });
     }
